@@ -3,10 +3,13 @@ package controllers
 import (
 	// "github.com/golang-jwt/jwt/v4"
 	"github.com/gorilla/mux"
+	"ppl/connect"
 	// "net/http"
 	// "strconv"
 	// "time"
 )
+
+var DB, err = connect.ConnectDB()
 
 func NewRouter() *mux.Router {
 	router := mux.NewRouter()
