@@ -1,4 +1,4 @@
-package handlers
+package controllers
 
 import (
 	// "github.com/golang-jwt/jwt/v4"
@@ -17,7 +17,7 @@ func NewRouter() *mux.Router {
 	// router.Handle("/words/{WordID}", authMiddleware(http.HandlerFunc(GetWordDetailHandler))).Methods("GET")
 	// // router.HandleFunc("/words", GetAllWordsHandler).Methods("GET").Queries("page", "{page}") // for testing in postman
 	// // router.HandleFunc("/words/{WordID}", GetWordDetailHandler).Methods("GET") //for testing in postman
-	// router.HandleFunc("/register", RegisterHandler).Methods("POST")
+	router.HandleFunc("/register", RegisterController).Methods("POST")
 	// router.HandleFunc("/login", LoginHandler).Methods("POST")
 	// router.Handle("/user", authMiddleware(http.HandlerFunc(GetUserHandler))).Methods("GET")
 	// //router.Handle("/user/{id}", authMiddleware(http.HandlerFunc(EditUserHandler))).Methods("PUT")

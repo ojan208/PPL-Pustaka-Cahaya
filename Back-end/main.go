@@ -3,11 +3,11 @@ package main
 import (
 	"log"
 	"net/http"
-	"ppl/handlers"
+	"ppl/controllers"
 )
 
 func main() {
-	router := handlers.NewRouter()
+	router := controllers.NewRouter()
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
