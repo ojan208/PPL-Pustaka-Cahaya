@@ -10,6 +10,7 @@ Request Body :
 
 ```json 
 {
+    "nama":"Fauzan Azhiima",
     "email": "fauzan17@example.com",
     "password": "SecretClass" // min 8 char
 }

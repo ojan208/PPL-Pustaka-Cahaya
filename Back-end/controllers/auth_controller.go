@@ -7,13 +7,16 @@ import (
 	"ppl/models"
 	"ppl/helper"
 	"github.com/go-playground/validator/v10"
+	"fmt"
 )
 
 func RegisterController(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 	validate := validator.New()
 
-	err := json.NewDecoder(r.Body).Decode(user)
+	err := json.NewDecoder(r.Body).Decode(&user)
+	fmt.Printf("%+v\n", user)
+
 	err = validate.Struct(user)
 	if err != nil {
 		// Informasi akun tidak sesuai ekspektasi (Password < 8 char, tidak mengisi email/nama)
@@ -22,7 +25,7 @@ func RegisterController(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	rows, err := DB.Query("SELECT email from user WHERE email = $1", user.Email)
+	rows, err := DB.Query("SELECT email from user WHERE email = ?", user.Email)
 	if err != nil {
 		// Ada masalah dgn koneksi server dan db
 		w.WriteHeader(http.StatusInternalServerError)
@@ -46,7 +49,8 @@ func RegisterController(w http.ResponseWriter, r *http.Request) {
 	}
 	user.Password = string(hashedPassword)
 
-	_, err = DB.Exec("INSERT INTO user (nama, email, password) VALUES ($1, $2, $3)", 
+	fmt.Printf("%+v\n", user)
+	_, err = DB.Exec("INSERT INTO user (nama, email, password) VALUES (?, ?, ?)", 
 					user.Nama, user.Email, user.Password)
 	if err != nil {
 		// Ada kesalahan dengan koneksi db
@@ -55,7 +59,7 @@ func RegisterController(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	rows, err = DB.Query("SELECT userID, role from user WHERE email = $1", user.Email)
+	rows, err = DB.Query("SELECT userID, role from user WHERE email = ?", user.Email)
 	if err != nil {
 		// Ada masalah dgn koneksi server dan db
 		w.WriteHeader(http.StatusInternalServerError)
