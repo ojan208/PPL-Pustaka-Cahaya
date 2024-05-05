@@ -66,6 +66,7 @@ func RegisterController(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	defer rows.Close()
 	
 	rows.Next()
 	err = rows.Scan(&user.UserID, &user.Role)
@@ -91,7 +92,12 @@ func RegisterControllerOAuth(w http.ResponseWriter, r *http.Request) {
 }
 
 func LoginController(w http.ResponseWriter, r *http.Request) {
-	
+	// ambil value dari body request
+	// hash password yang diterima
+	// query untuk melihat validasi
+	// if valid, send token
+	// if not, send warning
+	// error checking every step of the way
 }
 
 func LoginControllerOAuth(w http.ResponseWriter, r *http.Request) {
