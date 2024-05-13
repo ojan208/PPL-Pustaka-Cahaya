@@ -12,7 +12,7 @@ Response Body :
 {
     "status": "success",
     "data": {
-            "lis1": [
+        "lis1": [
             {
                 "bookID": 1,
                 "judul": "Judul 1",
@@ -147,5 +147,110 @@ Response Body Error :
     "status": "error",
     "message": "Login Failed",
     "error_detail": "Invalid Email/Username or Invalid Password"
+}
+```
+
+### Books Catalog API
+
+Endpoint : GET [link]/books?genre=[genreID] OR [link]/books?genre=[genreID]&pages=2
+
+Response Body Success :
+
+```json
+{
+    "status": "success",
+    "data": {
+        "books": [
+            {
+                "bookID": 1,
+                "judul": "Judul 1",
+                "penulis": "nama penulis 1",
+                "harga": 40000,
+                "diskon": 0, // persen
+                "cover": "~/cover/cover_buku_1.jpg" // link to cover
+            },
+            {
+                "bookID": 2,
+                "judul": "Judul 2",
+                "penulis": "nama penulis 2",
+                "harga": 40000,
+                "diskon": 10, // persen
+                "cover": "~/cover/cover_buku_2.jpg"
+            },
+            ...
+        ],
+        "total": 200
+    }
+}
+```
+
+### Search API
+
+Endpoint : GET [link]/search?q=[keyword] OR [link]/search?q=[keyword]&pages=2
+
+Response Body Success :
+
+```json
+{
+    "status": "success",
+    "data": {
+        "books": [
+            {
+                "bookID": 1,
+                "judul": "Judul 1",
+                "penulis": "nama penulis 1",
+                "harga": 40000,
+                "diskon": 0, // persen
+                "cover": "~/cover/cover_buku_1.jpg" // link to cover
+            },
+            {
+                "bookID": 2,
+                "judul": "Judul 2",
+                "penulis": "nama penulis 2",
+                "harga": 40000,
+                "diskon": 10, // persen
+                "cover": "~/cover/cover_buku_2.jpg"
+            },
+            ...
+        ],
+        "total": 200
+    }
+}
+```
+
+### Book Detail API
+
+Endpoint : GET [link]/books/{bukuID}
+
+Response Body Success :
+
+```json
+{
+    "status": "success",
+    "data": {
+        "judul": "Judul 2",
+        "penulis": "nama penulis 2",
+        "deskripsi": "lorem ipsum dolor sit amet",
+        "format": [
+            {
+                "format": "Soft Cover",
+                "harga": 40000,
+                "diskon": 10, // persen
+            },
+            {
+                "format": "E-Book",
+                "harga": 30000,
+                "diskon": 0, // persen
+            }
+        ],
+        "tgl_terbit": "DD-MM-YYYY",
+        "jml_halaman": 500,
+        "isbn": "1231231231234",
+        "panjang": 30, // CM
+        "lebar": 15, // CM
+        "berat": 1.5, // KG
+        "bahasa": "Indonesia",
+        "cover": "~/cover/cover_buku_2.jpg"
+    }
 }
 ```
