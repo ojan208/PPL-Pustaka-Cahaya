@@ -103,10 +103,6 @@ func RegisterController(w http.ResponseWriter, r *http.Request) {
 	helper.WriteToResponseBody(w, http.StatusCreated, &response)
 }
 
-func RegisterControllerOAuth(w http.ResponseWriter, r *http.Request) {
-	
-}
-
 func LoginController(w http.ResponseWriter, r *http.Request) {
 	// ambil value dari body request
 	var user models.User
@@ -147,8 +143,4 @@ func LoginController(w http.ResponseWriter, r *http.Request) {
 
 	response := models.NewSuccessResponse("Login successful", responseData)
 	helper.WriteToResponseBody(w, http.StatusOK, response)
-}
-
-func LoginControllerOAuth(w http.ResponseWriter, r *http.Request) {
-	
 }

@@ -22,6 +22,9 @@ func NewRouter() *mux.Router {
 	// // router.HandleFunc("/words/{WordID}", GetWordDetailHandler).Methods("GET") //for testing in postman
 	router.HandleFunc("/register", RegisterController).Methods("POST")
 	router.HandleFunc("/login", LoginController).Methods("POST")
+	router.HandleFunc("/auth/{provider}/callback", OauthStart).Methods("GET")
+	router.HandleFunc("/auth/{provider}", OauthAuto).Methods("GET")
+	router.HandleFunc("/logout/{provider}", OauthLogout).Methods("GET")
 	router.HandleFunc("/index", HomepageController).Methods("GET")
 	router.HandleFunc("/books", BooksCatalogController).Queries("genre", "{genre}", "pages", "{pages}").Methods("GET")
 	router.HandleFunc("/books", BooksCatalogController).Queries("genre", "{genre}").Methods("GET")
