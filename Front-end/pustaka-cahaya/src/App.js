@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Menu from './Menu';
+import Register from './Register';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+ 
+function App() {
+  return (
+    <div >
+      <div className="app-header">
+        <Menu />
       </div>
-    );
-  }
-}
-
-export default App;
+      <div className="app-content">
+        <Register />
+      </div>
+    </div>
+  );
+ }
+ 
+ export default App;
