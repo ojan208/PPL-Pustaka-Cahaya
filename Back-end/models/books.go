@@ -12,7 +12,7 @@ type BookItem struct {
 type HomepageItem struct {
 	List1		[]BookItem 	`json:"list1"`
 	List2		[]BookItem	`json:"list2"`
-	List3		[]BookItem	`json:"list3"`
+	// List3		[]BookItem	`json:"list3"`
 }
 
 type BookFormat struct {

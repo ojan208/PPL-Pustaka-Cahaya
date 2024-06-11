@@ -29,7 +29,7 @@ func GenerateToken(userID int) (string, error) {
 
 
 func RegisterController(w http.ResponseWriter, r *http.Request) {
-	var user models.User
+	var user models.Account
 	validate := validator.New()
 
 	err := json.NewDecoder(r.Body).Decode(&user)
@@ -105,7 +105,7 @@ func RegisterController(w http.ResponseWriter, r *http.Request) {
 
 func LoginController(w http.ResponseWriter, r *http.Request) {
 	// ambil value dari body request
-	var user models.User
+	var user models.Account
 
 	err := json.NewDecoder(r.Body).Decode(&user)
 	if err != nil {
@@ -114,7 +114,7 @@ func LoginController(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var userDB models.User
+	var userDB models.Account
 	err = DB.QueryRow("SELECT userID, email, password FROM user WHERE email = ?", user.Email).Scan(&userDB.UserID, &userDB.Email, &userDB.Password)
 	if err != nil {
 		response := models.NewErrorResponse("Login Failed", "Unauthorized", "Invalid Email")

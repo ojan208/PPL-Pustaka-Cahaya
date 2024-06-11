@@ -18,6 +18,13 @@ type RegisterResponse struct {
 	Role 		int		`json:"role"`
 }
 
+func NewSuccessResponseNoData(message string) *ApiSuccesResponse {
+	return &ApiSuccesResponse{
+		Status:  "success",
+		Message: message,
+	}
+}
+
 func NewSuccessResponse(message string, data any) *ApiSuccesResponse {
 	return &ApiSuccesResponse{
 		Status:  "success",

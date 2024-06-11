@@ -1,6 +1,7 @@
 import './App.css';
 import Menu from './Menu';
 import Register from './Register';
+import Login from './Login';
 
  
 function App() {
@@ -10,7 +11,7 @@ function App() {
         <Menu />
       </div>
       <div className="app-content">
-        <Register />
+        <Login />
       </div>
     </div>
   );

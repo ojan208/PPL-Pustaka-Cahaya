@@ -16,7 +16,7 @@ const (
 )
 
 func ConnectDB() (*sql.DB, error) {
-	db, err := sql.Open("mysql", user+":"+password+"@tcp("+host+":"+port+")/"+dbname)
+	db, err := sql.Open("mysql", user+":"+password+"@tcp("+host+":"+port+")/"+dbname+"?parseTime=true")
 	
 	if err != nil {
 		panic(err)
