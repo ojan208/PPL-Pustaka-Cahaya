@@ -51,6 +51,8 @@ func NewRouter() http.Handler {
 	router.HandleFunc("/user/cart", DeleteFromCartController).Methods("DELETE")
 
 	router.HandleFunc("/user/order", MakeOrderToken).Methods("GET")
+	// router.HandleFunc("/order", MakeOrderToken).Methods("GET")
+	router.HandleFunc("/order/notification", handleAfterPayment).Methods("POST")
 
 	handler := cors.Default().Handler(router)
 	return handler
