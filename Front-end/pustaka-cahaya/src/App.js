@@ -1,20 +1,13 @@
 import './App.css';
-import Menu from './Menu';
-import Register from './Register';
-import Login from './Login';
+import Home from './Components/Home'
 
- 
 function App() {
   return (
-    <div >
-      <div className="app-header">
-        <Menu />
-      </div>
-      <div className="app-content">
-        <Login />
-      </div>
+    <div className="App">
+      <Home/>
+      <h1>Hello World</h1>
     </div>
   );
- }
- 
- export default App;
+}
+
+export default App;
