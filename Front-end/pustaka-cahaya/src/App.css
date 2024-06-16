@@ -200,3 +200,74 @@ html::-webkit-scrollbar-thumb{
   font-size:4rem;
   cursor:pointer;
 }
+
+/* register */
+.register-form-container{
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  top:6rem;
+  z-index: 10000;
+  height: 80%;
+  width : 100%;
+}
+
+.register-form{
+  right:0;
+}
+
+.register-form-container form{
+  background: #ffffff;
+  width: 40rem;
+  margin:2rem;
+}
+
+.register-form-container form h3{
+  font-size: 2.5rem;
+  text-align:center;
+  color: var(--black);
+}
+
+.register-form-container .checkbox{
+  display: flex;
+  align-items:center;
+  gap:0.5rem;
+  padding: 1rem;
+  width:25%;
+  font-size:1.3rem;
+}
+
+.register-form-container form input{
+  font-size:1.5rem;
+  margin-top:2rem;
+  margin-bottom:1.5rem;
+  padding:1rem;
+  border: var(--border);
+  width:100%;
+}
+
+.register-form-container form .btn{
+  text-align:center;
+  width:30%;
+  margin:1.5rem 12rem;
+}
+
+.register-form-container form p{
+  padding-top:0.8rem;
+  font-size:1.5rem;
+  text-align:center;
+}
+
+.register-form-container form p a{
+  text-decoration:underline;
+  color:var(--orange);
+  cursor:pointer;
+}
+
+.register-form-container p{
+  font-size:1.5rem;
+  text-align:center;
+  margin-left:-4rem;
+}

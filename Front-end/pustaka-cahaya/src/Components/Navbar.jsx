@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React, {useRef} from "react";
 import { FaSearch, FaHeart, FaUser, FaTimes } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
@@ -14,19 +15,19 @@ const Navbar = () => {
         <div>
             <header className="header">
                 <div className="header_one">
-                    <a href='\#' className='logo'>
+                    <Link to="/" className='logo'>
                         <img loading="lazy"
                             src="./logo.png"
                             alt="Pustaka Cahaya"
-                            className="image"/></a>
+                            className="image"/></Link>
                     <form className="search-form">
                         <input type="search" id="search-box" placeholder="Cari Produk, Judul Buku, Penulis"/>
                         <label htmlFor=""><FaSearch/></label>
                     </form>
                     <div className="icons">
                         <div id="search-btn"><FaSearch/></div>
-                        <a href="/#"><FaHeart/></a>
-                        <a href="/#"><FaCartShopping/></a>
+                        <a href="/qishlist"><FaHeart/></a>
+                        <a href="/cart"><FaCartShopping/></a>
                         <div id="login-btn>" className="user-btn" onClick={showNavbar}><FaUser/></div>
                     </div>
                 </div>
@@ -39,9 +40,9 @@ const Navbar = () => {
                     <input type="email" className="box" placeholder="Email" />
                     <input type="password" className="box" placeholder="Kata Sandi"/>
 
-                    <input type="submit" value="Sign In" className="btn"/>
-                    <p><a href="\">Lupa Kata Sandi</a>.</p>
-                    <p>Belum memiliki akun? <a href="\">Buat akun</a>. </p>
+                    <input type="submit" value="Masuk" className="btn"/>
+                    <p><Link to="/forgot-password">Lupa Kata Sandi</Link>.</p>
+                    <p>Belum memiliki akun? <Link to="/register">Buat akun</Link>. </p>
                 </form>
             </div>
         </div>
