@@ -67,22 +67,18 @@ const Navbar = () => {
                         <div id="search-btn"><FaSearch/></div>
                         <a href="/wishlist"><FaHeart/></a>
                         <a href="/cart"><FaCartShopping/></a>
-                        {/* ini ditampilin setelah login */}
-                        <div id="login-btn>" className="user-btn" onClick={showNavbar}><FaUser/>
-                        <ul>
-                            {Menu.map((menu) => (
-                                    <li key={menu}>{menu}</li>
-                            ))}
-                        </ul>
-                        </div> 
-                        {/* ini ditampilin sebelum login */}
-                        <div className="user-btn">Masuk</div>
-                    </div>  
-                        {/* <div id="login-btn>" className="user-btn" onClick={showNavbar}><FaUser/></div> */}
                         {
                             sessionStorage.getItem("token") ? 
-                            <div id="login-btn>" className="user-btn" onClick={showNavbar}><FaUser/></div> : 
-                            <div id="login-btn>" className="user-btn" onClick={showNavbar}>Masuk</div>
+                            //ini ditampilin setelah login
+                            <div id="login-btn>" className="bg-withe p-4 w-52 shadow-lg absolute -left-14 top-24" onClick={showNavbar}><FaUser/>
+                            <ul>
+                            {Menu.map((menu) => (
+                                    <li classname="p-2 text-lg cursor-pointer rounded hover:bg-inherit" key={menu}>{menu}</li>
+                            ))}
+                            </ul>
+                            </div> : 
+                            //ini ditampilin sebelum login 
+                            <div id="login-btn" className="masuk-btn" onClick={showNavbar}>Masuk</div>
                         }
                     </div>
                 </div>

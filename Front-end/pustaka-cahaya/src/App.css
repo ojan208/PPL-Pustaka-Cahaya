@@ -92,9 +92,22 @@ html::-webkit-scrollbar-thumb{
 }
 
 .header .header_one .icons div {
-  font-size: 2.5rem;
+  font-size: 1rem;
   margin-left: 1.5rem;
   cursor: pointer;
+  margin-bottom:0.8rem;
+}
+
+.masuk-btn {
+  display:inline-block;
+  padding: 0.7rem 2rem;
+  color: #ffffff;
+  border-radius:0.5rem;
+  background:var(--orange);
+  border: 1px solid var(--orange);
+  cursor:pointer;
+  font-weight:700;
+  font-size: 0.2rem;
 }
 
 .header .header_one .icons a {
@@ -120,6 +133,11 @@ html::-webkit-scrollbar-thumb{
   .header .header_one{
     padding: 2rem;
   }
+}
+
+.user-btn{
+  background-color:#fffffff;
+  
 }
 
 .login-form-container{

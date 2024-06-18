@@ -1,4 +1,5 @@
 import React, { useRef, useState} from "react";
+import { Link } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import Navbar from '../Components/Navbar';
 import { useNavigate } from 'react-router-dom';
@@ -95,12 +96,12 @@ const Register = () => {
                 <div id="close-login-btn" onClick={showNavbar}><FaTimes/></div>
                 <form onSubmit={handleLogin}>
                     <h3>Masuk ke Pustaka Cahaya</h3>
-                    <input type="email" className="box" placeholder="Email" />
-                    <input type="password" className="box" placeholder="Kata Sandi"/>
+                    <input type="email" className="box" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                    <input type="password" className="box" placeholder="Kata Sandi" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
                     <input type="submit" value="Masuk" className="btn"/>
-                    <p><a href="/forgot-password">Lupa Kata Sandi</a>.</p>
-                    <p>Belum memiliki akun? <a href="/register" onClick={showNavbar}>Buat akun</a>. </p>
+                    <p><Link to="/forgot-password">Lupa Kata Sandi</Link>.</p>
+                    <p>Belum memiliki akun? <Link to="/register">Buat akun</Link>. </p>
                 </form>
             </div>
         </div>
