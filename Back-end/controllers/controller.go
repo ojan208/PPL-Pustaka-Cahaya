@@ -50,6 +50,11 @@ func NewRouter() http.Handler {
 	router.HandleFunc("/user/cart/", ChangeAmountController).Methods("PUT")
 	router.HandleFunc("/user/cart", DeleteFromCartController).Methods("DELETE")
 
+	// WIshlist
+	router.HandleFunc("/user/wishlist", ReadWishlistController).Methods("GET")
+	router.HandleFunc("/user/wishlist", AddToWishlistController).Methods("POST")
+	router.HandleFunc("/user/wishlist", DeleteFromWishlistController).Methods("DELETE")
+
 	router.HandleFunc("/user/order", MakeOrderToken).Methods("GET")
 	// router.HandleFunc("/order", MakeOrderToken).Methods("GET")
 	router.HandleFunc("/order/notification", handleAfterPayment).Methods("POST")

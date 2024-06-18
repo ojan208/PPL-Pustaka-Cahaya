@@ -80,6 +80,14 @@ func MakeOrderToken(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	_, err = DB.Exec("DELETE FROM user_cart where userid = ?", userID)
+	if err != nil {
+		// Ada kesalahan dengan koneksi db
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
 	// Bikin request ke midtrans pake hal yg udah tau + dpt response dr request
 	midtransUrl := "https://app.sandbox.midtrans.com/snap/v1/transactions"
 
