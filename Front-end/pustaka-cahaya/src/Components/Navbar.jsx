@@ -65,7 +65,12 @@ const Navbar = () => {
                         <div id="search-btn"><FaSearch/></div>
                         <a href="/qishlist"><FaHeart/></a>
                         <a href="/cart"><FaCartShopping/></a>
-                        <div id="login-btn>" className="user-btn" onClick={showNavbar}><FaUser/></div>
+                        {/* <div id="login-btn>" className="user-btn" onClick={showNavbar}><FaUser/></div> */}
+                        {
+                            sessionStorage.getItem("token") ? 
+                            <div id="login-btn>" className="user-btn" onClick={showNavbar}><FaUser/></div> : 
+                            <div id="login-btn>" className="user-btn" onClick={showNavbar}>Masuk</div>
+                        }
                     </div>
                 </div>
             </header>
