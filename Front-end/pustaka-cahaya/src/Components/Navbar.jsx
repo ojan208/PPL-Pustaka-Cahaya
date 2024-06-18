@@ -1,14 +1,51 @@
 import { Link } from 'react-router-dom';
-import React, {useRef} from "react";
+import React, { useRef, useState } from "react";
 import { FaSearch, FaHeart, FaUser, FaTimes } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
+// import { login } from '../auth';
 
 const Navbar = () => {
-
     const navRef= useRef();
+    
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const showNavbar=()=>{
         navRef.current.classList.toggle("login-form")
+    }
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        setError('');
+
+        try {
+            const response = await fetch('http://localhost:8080/auth/login', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ "email":email, "password":password }),
+            });
+        
+            if (!response.ok) {
+                throw new Error('Invalid credentials');
+            }
+        
+            const data = await response.json();
+            console.log(data);
+            sessionStorage.setItem('token', data.data.token); // Store the token in session storage
+            setIsLoggedIn(true);
+            showNavbar();
+        } catch (error) {
+            setError(error.message);
+        }
+    }
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setIsLoggedIn(false);
     }
 
     return(
@@ -35,10 +72,10 @@ const Navbar = () => {
 
             <div className="login-form-container" ref={(navRef)}>
                 <div id="close-login-btn" onClick={showNavbar}><FaTimes/></div>
-                <form action="#">
+                <form onSubmit={handleLogin}>
                     <h3>Masuk ke Pustaka Cahaya</h3>
-                    <input type="email" className="box" placeholder="Email" />
-                    <input type="password" className="box" placeholder="Kata Sandi"/>
+                    <input type="email" className="box" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                    <input type="password" className="box" placeholder="Kata Sandi" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
                     <input type="submit" value="Masuk" className="btn"/>
                     <p><Link to="/forgot-password">Lupa Kata Sandi</Link>.</p>
