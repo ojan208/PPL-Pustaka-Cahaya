@@ -75,7 +75,7 @@ func RegisterController(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	rows, err = DB.Query("SELECT userID, role from user WHERE email = ?", user.Email)
+	rows, err = DB.Query("SELECT userID from user WHERE email = ?", user.Email)
 	if err != nil {
 		// Ada masalah dgn koneksi server dan db
 		w.WriteHeader(http.StatusInternalServerError)
@@ -85,7 +85,7 @@ func RegisterController(w http.ResponseWriter, r *http.Request) {
 	defer rows.Close()
 	
 	rows.Next()
-	err = rows.Scan(&user.UserID, &user.Role)
+	err = rows.Scan(&user.UserID)
 	if err != nil {
 	// Ada masalah dgn koneksi server dan db
 		w.WriteHeader(http.StatusInternalServerError)
@@ -93,13 +93,19 @@ func RegisterController(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	registerResponse := models.RegisterResponse {
-		UserId	: user.UserID,
-		Email	: user.Email,
-		Role 	: user.Role,
+	token, err := GenerateToken(user.UserID)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 
-	response := models.NewSuccessResponse("Registration Successful!", registerResponse)
+	responseData := models.UserLogin{
+		// UserID: strconv.Itoa(userDB.UserID),
+		// Email: userDB.Email, 
+		Token: token,
+	}
+
+	response := models.NewSuccessResponse("Registration Successful!", responseData)
 	helper.WriteToResponseBody(w, http.StatusCreated, &response)
 }
 
@@ -136,8 +142,8 @@ func LoginController(w http.ResponseWriter, r *http.Request) {
 	}
 
 	responseData := models.UserLogin{
-		UserID: strconv.Itoa(userDB.UserID),
-		Email: userDB.Email, 
+		// UserID: strconv.Itoa(userDB.UserID),
+		// Email: userDB.Email, 
 		Token: token,
 	}
 

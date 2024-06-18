@@ -10,8 +10,8 @@ type Account struct {
 }
 
 type UserLogin struct {
-	UserID 		string 		`json:"user_id" 	gorm:"primaryKey" `
-	Email 		string 		`json:"email" 		gorm:"type:varchar(254)" `
+	UserID 		string 		`json:"user_id" 	gorm:"primaryKey"`
+	Email 		string 		`json:"email" 		gorm:"type:varchar(254)"`
 	Token 		string		`json:"token"`
 }
 
