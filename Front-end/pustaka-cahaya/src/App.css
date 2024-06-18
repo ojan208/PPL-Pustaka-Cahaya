@@ -121,6 +121,18 @@ html::-webkit-scrollbar-thumb{
   font-size: 0.2rem;
 }
 
+.masuk-btn:hover {
+  display:inline-block;
+  padding: 0.7rem 2rem;
+  color: var(--orange);
+  border-radius:0.5rem;
+  background:var(--white);
+  border: 1px solid var(--orange);
+  cursor:pointer;
+  font-weight:700;
+  font-size: 0.2rem;
+}
+
 .header .header_one .icons a {
   font-size: 2rem;
   margin-left: 1.5rem;
@@ -353,7 +365,7 @@ li{
 
 .profile-form-container form .box{
   font-size:1.5rem;
-  margin-top:2rem;
+  /* margin-top:2rem; */
   margin-bottom:1rem;
   padding:1rem;
   border: var(--border);
@@ -364,4 +376,39 @@ li{
   text-align:center;
   width:30%;
   margin-left:14rem;
+}
+
+.profile-form-container form h2 label{
+  font-weight:600;
+  /* margin-top:2rem; */
+}
+
+.row{
+  align-items:center;
+  display:flex;
+  justify-content:center;
+}
+
+.activeColor{
+  padding-top:5px;
+  height:30px;
+  width:10%;
+  border:2px solid grey;
+  cursor:pointer;
+}
+
+.pointer{
+  cursor:pointer;
+}
+
+.profile-form-container form .radio{
+  display: flex;
+  align-items:center;
+  vertical-align: middle;
+  word-wrap: break-word;
+  justify-content: start;
+  padding: 1rem 0;
+  width:100%;
+  gap:1rem;
+  font-size:1.4rem;
 }
