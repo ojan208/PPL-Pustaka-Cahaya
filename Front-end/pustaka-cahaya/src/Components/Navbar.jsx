@@ -80,7 +80,7 @@ const Navbar = () => {
                         {
                             sessionStorage.getItem("token") ? 
                             //ini ditampilin setelah login
-                            <div id="login-btn>" className="user-btn" onClick={() =>setOpen(!open)} ref={userRef}><FaUser/>
+                            <div id="login-btn>" className="user-btn" onClick={()=>setOpen(!open)} ref={userRef}><FaUser/>
                             {open && (        
                                 <div className="bg-white p-4 w-52 shadow-lg absolute -left-14 top-24"
                                      ref={menuRef}>
