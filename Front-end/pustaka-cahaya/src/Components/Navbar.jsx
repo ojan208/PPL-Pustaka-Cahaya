@@ -48,6 +48,8 @@ const Navbar = () => {
         setIsLoggedIn(false);
     }
 
+    const Menu = ['Profile', 'Logout']
+
     return(
         <div>
             <header className="header">
@@ -63,10 +65,19 @@ const Navbar = () => {
                     </form>
                     <div className="icons">
                         <div id="search-btn"><FaSearch/></div>
-                        <a href="/qishlist"><FaHeart/></a>
+                        <a href="/wishlist"><FaHeart/></a>
                         <a href="/cart"><FaCartShopping/></a>
-                        <div id="login-btn>" className="user-btn" onClick={showNavbar}><FaUser/></div>
-                    </div>
+                        {/* ini ditampilin setelah login */}
+                        <div id="login-btn>" className="user-btn" onClick={showNavbar}><FaUser/>
+                        <ul>
+                            {Menu.map((menu) => (
+                                    <li key={menu}>{menu}</li>
+                            ))}
+                        </ul>
+                        </div> 
+                        {/* ini ditampilin sebelum login */}
+                        <div className="user-btn">Masuk</div>
+                    </div>  
                 </div>
             </header>
 

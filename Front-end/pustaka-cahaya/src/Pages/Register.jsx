@@ -44,6 +44,32 @@ const Register = () => {
             setError(error.message);
         }
     }
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        setError('');
+
+        try {
+            const response = await fetch('http://localhost:8080/auth/login', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ "email":email, "password":password }),
+            });
+        
+            if (!response.ok) {
+                throw new Error('Invalid credentials');
+            }
+        
+            const data = await response.json();
+            console.log(data);
+            sessionStorage.setItem('token', data.data.token); // Store the token in session storage
+            setIsLoggedIn(true);
+            showNavbar();
+        } catch (error) {
+            setError(error.message);
+        }
+    }
 
     return(
         <div className="register-container">
@@ -67,7 +93,7 @@ const Register = () => {
 
             <div className="login-form-container" ref={(navRef)}>
                 <div id="close-login-btn" onClick={showNavbar}><FaTimes/></div>
-                <form action="#">
+                <form onSubmit={handleLogin}>
                     <h3>Masuk ke Pustaka Cahaya</h3>
                     <input type="email" className="box" placeholder="Email" />
                     <input type="password" className="box" placeholder="Kata Sandi"/>
