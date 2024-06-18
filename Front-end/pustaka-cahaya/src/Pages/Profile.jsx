@@ -11,10 +11,10 @@ const Profile = () => {
                     <input type="text" className="box" placeholder="Nama Lengkap" required />
                     <input type="email" className="box" placeholder="Email" required />
                     <input type="password" className="box" placeholder="Kata Sandi" required />
-                    <div className="checkbox">  
+                    {/* <div className="checkbox">   */}
                         <input type="checkbox" id="consent"/>
                         <label>Dengan pembuatan akun, Anda menyetujui Syarat & Ketentuan serta Kebijakan Privasi kami</label>
-                    </div>
+                    {/* </div> */}
                     {/* <form> */}
                     <input type="submit" value="Daftar" className="btn"/>
                     {/* </form> */}

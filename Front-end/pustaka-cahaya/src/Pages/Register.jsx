@@ -81,13 +81,15 @@ const Register = () => {
                     <input type="text" className="box" placeholder="Nama Lengkap" value={nama} onChange={(e) => setNama(e.target.value)} required />
                     <input type="email" className="box" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                     <input type="password" className="box" placeholder="Kata Sandi" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                    <div className="checkbox">  
+                    <br/> <br/>
+                    <div className="checkbox">
                         <input type="checkbox" id="consent"/>
-                        <label>Dengan pembuatan akun, Anda menyetujui Syarat & Ketentuan serta Kebijakan Privasi kami</label>
+                        <label for="consent">
+                        Dengan pembuatan akun, Anda menyetujui Syarat & Ketentuan serta Kebijakan Privasi kami.
+                        </label>
                     </div>
-                    {/* <form> */}
-                    <input type="submit" value="Daftar" className="btn"/>
-                    {/* </form> */}
+                    
+                    <input type="submit" value="Daftar" className="btn"/>    
                 </form>
                 <p>Sudah memiliki akun? <a onClick={showNavbar}>Masuk</a>. </p>
             </div>
