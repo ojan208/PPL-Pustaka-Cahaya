@@ -2,7 +2,7 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home';
 import Cart from './Pages/Cart';
-import Book from './Pages/Book';
+import Book from './Components/BookList';
 import Register from './Pages/Register';
 import Profile from './Pages/Profile';
 import Wishlist from './Pages/Wishlist';

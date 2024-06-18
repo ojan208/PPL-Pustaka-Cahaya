@@ -4,12 +4,12 @@ import Footer from "../Components/Footer";
 
 const Cart = () => {
     return(
-        <div className="cart-container">
+        <div className="App">
             <Navbar/>
         
         <div className="address-form-container">
             <form>
-                <a href="/add-address"><button className="btn">Tambah Keranjang</button></a>
+                <a href="/products"><button type="button" className="btn">Tambah Keranjang</button></a>
             </form>
             <table>
                 <thead>
@@ -40,8 +40,11 @@ const Cart = () => {
                     {/* bikin kondisi if else kalo tabel kosong */}
                 </tbody>
             </table>
-            <p>Subtotal: Rp. 258.000,00</p>
-            <div className="btn">Pembayaran</div>
+            <div className="subtotal">
+                <p>Subtotal: Rp. 258.000,00</p>
+            <a href="/payment"><div className="btn">Pembayaran</div></a>
+            </div>
+            
         </div>
         <Footer/>
         </div>

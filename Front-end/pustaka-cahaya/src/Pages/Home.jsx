@@ -21,9 +21,9 @@ const Home = (props) => {
         loop:true,
     };
     return(
-        <div className="home-container">
+        <div className="App">
             <Navbar/>
-            <section className="home" id="home">
+            <div className="home-container" id="home">
                 <div className="row">
                     <div className="content">
                         <h3>New Arrival</h3>
@@ -109,11 +109,11 @@ const Home = (props) => {
                             </a>
                         </Swiper>
                     </div>
-                    <Footer/>
                 </div>
-            </section>
+            </div>
+            <Footer/>
         </div>
     )
 }
 
-export default Home
+export default Home;

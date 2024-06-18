@@ -4,12 +4,12 @@ import Footer from "../Components/Footer";
 
 const Wishlist = () => {
     return(
-        <div className="cart-container">
+        <div className="App">
             <Navbar/>
         
         <div className="address-form-container">
             <form>
-                <a href="/products"><button className="btn">Tambah Wishlist</button></a>
+                <a href="/products"><button className="btn" type="button">Tambah Wishlist</button></a>
             </form>
             <table>
                 <thead>

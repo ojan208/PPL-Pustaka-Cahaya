@@ -22,7 +22,7 @@ const Profile = () => {
         setToggle(id)
     }
     return (
-        <div className="profile-container">
+        <div className="App">
             <Navbar/>
             <div className="row">
                 <ul>
@@ -48,10 +48,8 @@ const Profile = () => {
                     <input type="radio" id="perempuan" name="Jenis Kelamin"/>
                     <label for="perempuan">Perempuan</label>
                     </div>
-                    <br/>
                     <h2><label>No. Telepon</label></h2>
                     <input type="text" className="box" placeholder="+62XXXXXXXXXX" required />
-                    <br/>
                     <br/>
                     <h2><label>Pekerjaan/Profesi</label></h2>
                     <input type="text" className="box" placeholder="Pekerjaan/Profesi" required />

@@ -73,7 +73,7 @@ const Register = () => {
     }
 
     return(
-        <div className="register-container">
+        <div className="App">
             <Navbar/>
             <div className="register-form-container">
                 <form onSubmit={handleRegister}>
