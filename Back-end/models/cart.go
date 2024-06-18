@@ -9,3 +9,8 @@ type CartRead struct {
 	Harga	int		`json:"harga"`
 	Diskon	int		`json:"diskon"`
 }
+
+type CartReq struct {
+	BukuID 	[]int	`json:"bukuID"`
+	Jumlah	int 	`json:"jumlah"`
+}

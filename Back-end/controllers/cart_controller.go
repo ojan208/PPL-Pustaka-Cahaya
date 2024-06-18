@@ -10,12 +10,10 @@ import (
 	// "fmt"
 )
 
-type cartReq struct {
-	BukuID 	[]int	`json:"bukuID"`
-	Jumlah	int 	`json:"jumlah"`
-}
-
-
+// type cartReq struct {
+// 	BukuID 	[]int	`json:"bukuID"`
+// 	Jumlah	int 	`json:"jumlah"`
+// }
 
 func AddToCartController(w http.ResponseWriter, r *http.Request) {
 	userID, err := helper.GetUserIDFromToken(r)
@@ -25,7 +23,7 @@ func AddToCartController(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var buku cartReq
+	var buku models.CartReq
 	err = json.NewDecoder(r.Body).Decode(&buku)
 	if err != nil {
 		response := models.NewErrorResponse("Bad Request", "Format Request Tidak Sesuai", err.Error())
@@ -90,7 +88,7 @@ func ChangeAmountController(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var buku cartReq
+	var buku models.CartReq
 	err = json.NewDecoder(r.Body).Decode(&buku)
 	if err != nil {
 		response := models.NewErrorResponse("Bad Request", "Format Request Tidak Sesuai", err.Error())
@@ -123,7 +121,7 @@ func DeleteFromCartController(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	
-	var bukuIDS cartReq
+	var bukuIDS models.CartReq
 	err = json.NewDecoder(r.Body).Decode(&bukuIDS)
 	if err != nil {
 		response := models.NewErrorResponse("Bad Request", "Format Request Tidak Sesuai", err.Error())
