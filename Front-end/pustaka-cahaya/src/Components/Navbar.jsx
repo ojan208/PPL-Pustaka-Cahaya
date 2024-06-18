@@ -78,6 +78,13 @@ const Navbar = () => {
                         {/* ini ditampilin sebelum login */}
                         <div className="user-btn">Masuk</div>
                     </div>  
+                        {/* <div id="login-btn>" className="user-btn" onClick={showNavbar}><FaUser/></div> */}
+                        {
+                            sessionStorage.getItem("token") ? 
+                            <div id="login-btn>" className="user-btn" onClick={showNavbar}><FaUser/></div> : 
+                            <div id="login-btn>" className="user-btn" onClick={showNavbar}>Masuk</div>
+                        }
+                    </div>
                 </div>
             </header>
 
