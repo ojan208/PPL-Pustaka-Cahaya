@@ -50,6 +50,16 @@ const Navbar = () => {
 
     const Menu = ['Profile', 'Logout']
 
+    const [open, setOpen] = useState(false);
+
+    const menuRef = useRef();
+    const userRef = useRef();
+
+    window.addEventListener("click", (e) => {
+        if(e.target !== menuRef.current && e.target !== userRef.current){
+            setOpen(false);
+        }
+    });
     return(
         <div>
             <header className="header">
@@ -70,12 +80,19 @@ const Navbar = () => {
                         {
                             sessionStorage.getItem("token") ? 
                             //ini ditampilin setelah login
-                            <div id="login-btn>" className="bg-withe p-4 w-52 shadow-lg absolute -left-14 top-24" onClick={showNavbar}><FaUser/>
-                            <ul>
-                            {Menu.map((menu) => (
-                                    <li classname="p-2 text-lg cursor-pointer rounded hover:bg-inherit" key={menu}>{menu}</li>
-                            ))}
-                            </ul>
+                            <div id="login-btn>" className="user-btn" onClick={() =>setOpen(!open)}><FaUser/>
+                            {open && (        
+                                <div className="bg-white p-4 w-52 shadow-lg absolute -left-14 top-24"
+                                     ref={userRef}>
+                                    <ul>
+                                    {Menu.map((menu) => (
+                                        <li onClick={() => setOpen(false)}
+                                            classname="p-2 text-lg cursor-pointer rounded hover:bg-inherit" 
+                                            key={menu}>{menu}</li>
+                                    ))}
+                                    </ul>
+                                </div>
+                                )}
                             </div> : 
                             //ini ditampilin sebelum login 
                             <div id="login-btn" className="masuk-btn" onClick={showNavbar}>Masuk</div>
