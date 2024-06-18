@@ -1,8 +1,8 @@
 import React, { useRef, useState} from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import Navbar from '../Components/Navbar';
-import { useNavigate } from 'react-router-dom';
+import Footer from "../Components/Footer";
 
 const Register = () => {
     const navRef= useRef();
@@ -106,6 +106,7 @@ const Register = () => {
                     <p>Belum memiliki akun? <Link to="/register">Buat akun</Link>. </p>
                 </form>
             </div>
+            <Footer/>
         </div>
     )
 }

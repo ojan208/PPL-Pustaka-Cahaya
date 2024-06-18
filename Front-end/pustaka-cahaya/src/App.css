@@ -14,6 +14,7 @@
 }
 
 :root{
+  
   --yellow: #FFFDC9;
   --orange: #ED8728;
   --black: #444444;
@@ -24,7 +25,7 @@
 
 html{
   font-size: 62.5%;
-  overflow: hidden;
+  overflow:auto;
   scroll-padding-top: 5rem;
   scroll-behavior: smooth;
 }
@@ -256,7 +257,7 @@ html::-webkit-scrollbar-thumb{
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  position: fixed;
+  /* position: fixed; */
   top:15rem;
   z-index: 10000;
   height: 70%;
@@ -346,8 +347,8 @@ li{
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  position: fixed;
-  top:15rem;
+  /* position: fixed; */
+  margin:1rem;
   z-index: 10000;
   height: 70%;
   width : 100%;
@@ -383,18 +384,40 @@ li{
   /* margin-top:2rem; */
 }
 
+/* Row for showing profile and address */
 .row{
   align-items:center;
   display:flex;
   justify-content:center;
+  margin-top:1.5rem;
+}
+
+.row ul {
+  list-style:none;
+}
+
+.row ul li{
+  display:inline;
+  /* color:var(--white); */
+  text-align:center;
+  /* background-color:var(--white); */
+}
+
+.row ul li:hover{
+  color: var(--orange);
+  cursor:pointer;
+  /* background: var(--orange); */
 }
 
 .activeColor{
   padding-top:5px;
   height:30px;
-  width:10%;
-  border:2px solid grey;
+  width:5%;
+  border:1px solid grey;
+  background-color: var(--orange);
+  color: #ffffff;
   cursor:pointer;
+  text-align:center;
 }
 
 .pointer{
@@ -411,4 +434,89 @@ li{
   width:100%;
   gap:1rem;
   font-size:1.4rem;
+}
+
+.content{
+  display:none;
+}
+
+.show-content{
+  display: block;
+}
+
+/* Address */
+.address-form-container {
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  /* justify-content: center; */
+ /* position: fixed;*/
+  top:15rem;
+  z-index: 10000;
+  height: 70%;
+  width : 100%;
+  font-size:1.5rem;
+}
+
+table{
+  width:90%;
+  margin-top:3rem;
+  /* border: 1px solid grey; */
+}
+
+th{
+  border-top:1px solid black;
+  border-bottom:1px solid grey
+}
+
+td{
+  text-align:center;
+  border-bottom:1px solid grey;
+}
+
+/* add-address form */
+.add-address-form-container{
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin:1rem 0;
+  z-index: 10000;
+  height: 80%;
+  width : 100%;
+}
+
+.add-address-form{
+  right:0;
+}
+
+.add-address-form-container form{
+  background: #ffffff;
+  width: 40rem;
+  margin:1rem;
+}
+
+.add-address-form-container form .box{
+  font-size:1.5rem;
+  /* margin-top:2rem; */
+  margin-bottom:1rem;
+  padding:1rem;
+  border: var(--border);
+  width:100%;
+}
+
+.add-address-form-container form .btn{
+  text-align:center;
+  width:30%;
+  margin-left:14rem;
+}
+
+.footer-container{
+  justify-content:center;
+  text-align:center;
+  font-size:1.5rem;
+  font-weight:500;
+  background-color:var(--yellow);
+  padding: 1.5rem;
+  margin-top:5rem;
 }

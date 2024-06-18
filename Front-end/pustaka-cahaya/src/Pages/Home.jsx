@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
-
+import Footer from "../Components/Footer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/swiper-bundle.css';
 import { Autoplay } from "swiper/modules";
@@ -109,6 +109,7 @@ const Home = (props) => {
                             </a>
                         </Swiper>
                     </div>
+                    <Footer/>
                 </div>
             </section>
         </div>

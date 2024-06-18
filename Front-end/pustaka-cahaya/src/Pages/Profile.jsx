@@ -1,6 +1,7 @@
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import { TbRuler } from "react-icons/tb";
+import { Link } from "react-router-dom";
+import React from "react";
 import { useState } from "react";
 
 const Profile = () => {
@@ -8,21 +9,29 @@ const Profile = () => {
 
     const handleSubmit =(e,type)=>{
         // e.preventDefault()
-        if(type == 'Profil'){
+        if(type === 'Profil'){
             //isi brow
         }
         else{
             //ni buat yg alamat
         }
     }
+    const [toggle, setToggle] = useState(1)
+
+    function updateToggle(id){
+        setToggle(id)
+    }
     return (
         <div className="profile-container">
             <Navbar/>
             <div className="row">
-                <div className={tab == false?'activeColor':'pointer'} onClick={()=>setTab(false)}>Profil</div>
-                <div className={tab == true?'activeColor':'pointer'} onClick={()=>setTab(true)}>Alamat</div>
+                <ul>
+                <li className={tab === false?'activeColor':'pointer'} onClick={()=>updateToggle(1)||setTab(false)}>Profil</li>
+                <li className={tab === true?'activeColor':'pointer'} onClick={()=>updateToggle(2)||setTab(true)}>Alamat</li>
+                </ul>
             </div>
-            <div className="profile-form-container">
+            <div className={toggle === 1 ? "show-content":"content"}>
+                <div className="profile-form-container">
                 <form onSubmit={(e)=>handleSubmit(e,tab?'Profile':'Alamat')} id='Profil'>
                     {/* pokoknya tampilin buat si kolom kolomnya tuh udah keisi dluan */}
                     <br/>
@@ -40,7 +49,7 @@ const Profile = () => {
                     <label for="perempuan">Perempuan</label>
                     </div>
                     <br/>
-                    <h2><label>No. Telepom</label></h2>
+                    <h2><label>No. Telepon</label></h2>
                     <input type="text" className="box" placeholder="+62XXXXXXXXXX" required />
                     <br/>
                     <br/>
@@ -50,9 +59,43 @@ const Profile = () => {
                     <input type="password" className="box" placeholder="Kata Sandi" required />
                     <button className="btn">Simpan</button>
                 </form>
-                
-                {/* bro ini tolonk dibikin pas pindah tab tuh si alamat ya form alamat, klo si profil ya form profil. makaseh */}
-                
+                </div>
+            </div>
+            <div className={toggle === 2 ? "show-content":"content"}>
+                <div className="address-form-container">
+                    <form>
+                        <Link to="/add-address"><button className="btn">Tambah Alamat</button></Link>
+                    </form>
+                    <table>
+                        <thead>
+                            <th>Label Alamat</th>
+                            <th>Nama Penerima</th>
+                            <th>No. Handphone</th>
+                            <th>Alamat Lengkap</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Rumah</td>
+                                <td>Nama Penerima</td>
+                                <td>08XXXXXXXXXX</td>
+                                <td>Jalan Raya No. X Kel. A, Kec. B, Kota C, Prov. D, 12345</td>
+                            </tr>
+                            <tr>
+                                <td>Rumah</td>
+                                <td>Nama Penerima</td>
+                                <td>08XXXXXXXXXX</td>
+                                <td>Jalan Raya No. X Kel. A, Kec. B, Kota C, Prov. D, 12345</td>
+                            </tr>
+                            <tr>
+                                <td>Rumah</td>
+                                <td>Nama Penerima</td>
+                                <td>08XXXXXXXXXX</td>
+                                <td>Jalan Raya No. X Kel. A, Kec. B, Kota C, Prov. D, 12345</td>
+                            </tr>
+                            {/* bikin kondisi if else kalo tabel kosong */}
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <Footer/>
         </div>
