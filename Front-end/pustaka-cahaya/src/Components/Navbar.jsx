@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import React, { useRef, useState,useEffect } from "react";
 import { FaSearch, FaHeart, FaUser, FaTimes } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
+import { useGlobalContext } from '../context';
 // import { login } from '../auth';
 
 const Navbar = () => {
@@ -14,6 +16,8 @@ const Navbar = () => {
     const [error, setError] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [open, setOpen] = useState(false);
+
+    const history = useNavigate();
 
     useEffect(() => {
         const token = sessionStorage.getItem('token');
@@ -31,7 +35,7 @@ const Navbar = () => {
         setError('');
 
         try {
-            const response = await fetch(process.env.REACT_APP_BACKEND_URL + 'auth/login', {
+            const response = await fetch(process.env.REACT_APP_BACKEND_URL + '/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -47,6 +51,7 @@ const Navbar = () => {
             sessionStorage.setItem('token', data.data.token); // Store the token in session storage
             setIsLoggedIn(true); // Update login status
             showNavbar();
+            history('/');
         } catch (error) {
             setError(error.message);
         }
@@ -73,6 +78,24 @@ const Navbar = () => {
         };
     }, []);
 
+    // const {setSearchTerm, setResultTitle} = useGlobalContext();
+    // const searchText = useRef('');
+    // const navigate = useNavigate();
+
+    // useEffect(() => searchText.current.focus(), []);
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     let tempSearchTerm = searchText.current.value.trim();
+    //     if((tempSearchTerm.replace(/[^\w\s]/gi,"")).length === 0){
+    //     setSearchTerm("the lost world");
+    //     setResultTitle("Please Enter Something ...");
+    //     } else {
+    //     setSearchTerm(searchText.current.value);
+    //     }
+
+    //     navigate("/book");
+    // };
+    
     return(
         <div>
             <header className="header">
@@ -82,12 +105,15 @@ const Navbar = () => {
                             src="./logo.png"
                             alt="Pustaka Cahaya"
                             className="image"/></Link>
-                    <form className="search-form">
+                    <form className="search-form" 
+                    >
                         <input type="search" id="search-box" placeholder="Cari Produk, Judul Buku, Penulis"/>
-                        <label htmlFor=""><FaSearch/></label>
+                        <label for="search-box"><FaSearch/></label>
                     </form>
                     <div className="icons">
-                        <div id="search-btn"><FaSearch/></div>
+                        <div 
+                        // onClick={handleSubmit} 
+                        id ="search-btn"><FaSearch/></div>
                         <a href="/wishlist"><FaHeart/></a>
                         <a href="/cart"><FaCartShopping/></a>
                         {
@@ -121,7 +147,6 @@ const Navbar = () => {
                     <h3>Masuk ke Pustaka Cahaya</h3>
                     <input type="email" className="box" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                     <input type="password" className="box" placeholder="Kata Sandi" value={password} onChange={(e) => setPassword(e.target.value)} required />
-
                     <input type="submit" value="Masuk" className="btn"/>
                     <p><Link to="/forgot-password">Lupa Kata Sandi</Link>.</p>
                     <p>Belum memiliki akun? <Link to="/register">Buat akun</Link>. </p>

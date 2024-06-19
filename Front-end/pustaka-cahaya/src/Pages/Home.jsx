@@ -1,119 +1,67 @@
-import React from "react";
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
-import { Swiper, SwiperSlide } from "swiper/react";
-import 'swiper/swiper-bundle.css';
-import { Autoplay } from "swiper/modules";
+import React, { useEffect, useState } from 'react';
+import Navbar from '../Components/Navbar';
 
-const Home = (props) => {
-    const swiperOptionsOne={
-        breakpoints: {
-            0:{
-                slidesPerView:1,
-            },
-            768:{
-                slidesPerView:2,
-            },
-            1024:{
-                slidesPerView:3,
+const Home = () => {
+    const [staffPicks, setStaffPicks] = useState([]);
+    const [promoItems, setPromoItems] = useState([]);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        const fetchBooks = async () => {
+            try {
+                const response = await fetch(process.env.REACT_APP_BACKEND_URL+'/buku',{
+                    method:'GET',
+                    headers:{
+                        'Content-Type': 'application/json',
+                    },
+                 });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch books');
+                }
+                const data = await response.json();
+                setStaffPicks(data.data.List1);
+                setPromoItems(data.data.List2);
+            } catch (err) {
+                setError(err.message);
             }
-        },
-        loop:true,
-    };
-    return(
-        <div className="App">
+        };
+
+        fetchBooks();
+    }, []);
+
+    return (
+        <div>
             <Navbar/>
-            <div className="home-container" id="home">
-                <div className="row">
-                    <div className="content">
-                        <h3>New Arrival</h3>
-                        <p>Kumpulan buku-buku yang baru diterbitkan.</p>
-                        <a href="/products" className="btn">Beli Sekarang</a>
-                    </div>
-                    
-                    <div className="swiper">
-                        <h3>Best Seller</h3>
-                        <Swiper 
-                            watchSlidesProgress={true}
-                            slidesPerView={5}
-                            autoplay={{
-                                delay:9500,
-                                disableOnInteraction:false,
-                            }}
-                            pagination={{clickable:true}}
-                            modules={[Autoplay]}
-                            className="book-list"
-                            {...swiperOptionsOne}>
-                            <a href="\#" className='swiper-slide'>
-                            <SwiperSlide>
-                            <a href="\#" className='swiper-slide'>
-                            <SwiperSlide><img src="./images/Laut-Bercerita.jpg" alt="laut-bercerita"></img></SwiperSlide>
-                            </a>
-                            </SwiperSlide>
-                            </a>
-                            <a href="\#" className='swiper-slide'>
-                            <SwiperSlide><img src="./images/Laut-Bercerita.jpg" alt="laut-bercerita"></img></SwiperSlide>
-                            </a>
-                            <a href="\#" className='swiper-slide'>
-                            <SwiperSlide><img src="./images/fucek.jpg" alt="fucek"></img></SwiperSlide>
-                            </a>
-                        </Swiper>
-                    </div>
+            <div className="homepage-content">
+                {error && <p>{error}</p>}
+                
+                <h2>Staff Picks</h2>
+                <div className="book-list">
+                    {staffPicks.map(data => (
+                        <div key={data.BookID} className="book-item">
+                            <img src={data.Cover} alt={data.Judul} />
+                            <h3>{data.Judul}</h3>
+                            <p>{data.Penulis}</p>
+                            <p>{data.Harga}</p>
+                        </div>
+                    ))}
+                </div>
 
-                    <div className="swiper">
-                        <h3>Promo Hari Ini</h3>
-                        <Swiper 
-                            watchSlidesProgress={true}
-                            slidesPerView={5}
-                            autoplay={{
-                                delay:9500,
-                                disableOnInteraction:false,
-                            }}
-                            pagination={{clickable:true}}
-                            modules={[Autoplay]}
-                            className="book-list"
-                            {...swiperOptionsOne}>
-                            <a href="\#" className='swiper-slide'>
-                            <SwiperSlide><img src="./images/sagaras.jpeg" alt="sagaras"></img></SwiperSlide>
-                            </a>
-                            <a href="\#" className='swiper-slide'>
-                            <SwiperSlide><img src="./images/Laut-Bercerita.jpg" alt="laut-bercerita"></img></SwiperSlide>
-                            </a>
-                            <a href="\#" className='swiper-slide'>
-                            <SwiperSlide><img src="./images/fucek.jpg" alt="fucek"></img></SwiperSlide>
-                            </a>
-                        </Swiper>
-                    </div>
-
-                    <div className="swiper">
-                        <h3>Fantasi Terbaik</h3>
-                        <Swiper 
-                            watchSlidesProgress={true}
-                            slidesPerView={5}
-                            autoplay={{
-                                delay:9500,
-                                disableOnInteraction:false,
-                            }}
-                            pagination={{clickable:true}}
-                            modules={[Autoplay]}
-                            className="book-list"
-                            {...swiperOptionsOne}>
-                            <a href="\#" className='swiper-slide'>
-                            <SwiperSlide><img src="./images/sagaras.jpeg" alt="sagaras"></img></SwiperSlide>
-                            </a>
-                            <a href="\#" className='swiper-slide'>
-                            <SwiperSlide><img src="./images/Laut-Bercerita.jpg" alt="laut-bercerita"></img></SwiperSlide>
-                            </a>
-                            <a href="\#" className='swiper-slide'>
-                            <SwiperSlide><img src="./images/fucek.jpg" alt="fucek"></img></SwiperSlide>
-                            </a>
-                        </Swiper>
-                    </div>
+                <h2>Promo Items</h2>
+                <div className="book-list">
+                    {promoItems.map(book => (
+                        <div key={book.BookID} className="book-item">
+                            <img src={book.Cover} alt={book.Judul} />
+                            <h3>{book.Judul}</h3>
+                            <p>{book.Penulis}</p>
+                            <p>{book.Harga}</p>
+                            {book.Diskon > 0 && <p>Discount: {book.Diskon}%</p>}
+                        </div>
+                    ))}
                 </div>
             </div>
-            <Footer/>
         </div>
-    )
+    );
 }
 
 export default Home;

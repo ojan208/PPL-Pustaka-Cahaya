@@ -24,7 +24,7 @@ const Register = () => {
         setError('');
 
         try {
-            const response = await fetch(process.env.REACT_APP_BACKEND_URL + 'auth/register', {
+            const response = await fetch(process.env.REACT_APP_BACKEND_URL + '/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ const Register = () => {
         setError('');
 
         try {
-            const response = await fetch('http://localhost:8080/auth/login', {
+            const response = await fetch(process.env.REACT_APP_BACKEND_URL + '/auth/login', {
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json',
@@ -67,6 +67,7 @@ const Register = () => {
             sessionStorage.setItem('token', data.data.token); // Store the token in session storage
             setIsLoggedIn(true);
             showNavbar();
+            history('/');
         } catch (error) {
             setError(error.message);
         }
