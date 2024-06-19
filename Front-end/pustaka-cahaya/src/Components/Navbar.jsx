@@ -31,7 +31,7 @@ const Navbar = () => {
         setError('');
 
         try {
-            const response = await fetch('http://localhost:8080/auth/login', {
+            const response = await fetch(process.env.REACT_APP_BACKEND_URL + '/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ const Navbar = () => {
                                         <div className='dropDownProfile'>
                                         <ul className='flex flex-col gap-4 list'>
                                             <li><a href="/profile">Profile</a></li>
-                                            <li><a href="#">Logout </a></li>
+                                            <li><a onClick={handleLogout}>Logout </a></li>
                                         </ul>
                                     </div>
                                     </div>
