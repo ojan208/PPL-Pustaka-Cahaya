@@ -24,7 +24,7 @@ const Register = () => {
         setError('');
 
         try {
-            const response = await fetch(process.env.REACT_APP_BACKEND_URL + '/auth/register', {
+            const response = await fetch('https://localhost:8080/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ const Register = () => {
         setError('');
 
         try {
-            const response = await fetch(process.env.REACT_APP_BACKEND_URL + '/auth/login', {
+            const response = await fetch('https://localhost:8080/auth/login', {
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json',

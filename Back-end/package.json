@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "prisma": "^5.15.1"
+  },
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "Endpoint : GET [Link]/index",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
